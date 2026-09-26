@@ -1810,6 +1810,8 @@ function showNearbyParking(
 
 function findUserLocation() {
 
+document.querySelector(".map-panel")?.classList.add("location-found");
+
     if (!navigator.geolocation) {
 
         alert(
