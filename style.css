@@ -1,0 +1,2221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #ef3340;
+    --red-dark: #c91f2b;
+    --navy: #080d18;
+    --navy-light: #101827;
+    --white: #ffffff;
+    --text-dark: #111827;
+    --muted: #64748b;
+    --border: rgba(255, 255, 255, 0.08);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    background: var(--navy);
+    color: var(--white);
+}
+
+body {
+    overflow: hidden;
+}
+
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 34px;
+
+    background: rgba(8, 13, 24, 0.94);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+    z-index: 5000;
+}
+
+
+/* BRAND */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 280px;
+}
+
+.brand-logo {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: linear-gradient(
+        135deg,
+        #ff4654,
+        #c91f2b
+    );
+
+    color: white;
+    font-size: 23px;
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 24px rgba(239, 51, 64, 0.25);
+}
+
+.brand-text h1 {
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.brand-text span {
+    display: block;
+    margin-top: 3px;
+
+    color: #8d98aa;
+
+    font-size: 11px;
+}
+
+
+/* NAVIGATION */
+
+.main-navigation {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-button {
+    position: relative;
+
+    border: none;
+    background: transparent;
+
+    padding: 28px 18px 25px;
+
+    color: #8e98aa;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.nav-button:hover {
+    color: white;
+}
+
+.nav-button.active {
+    color: white;
+}
+
+.nav-button.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 16px;
+    right: 16px;
+    bottom: 0;
+
+    height: 3px;
+
+    border-radius: 10px 10px 0 0;
+
+    background: var(--red);
+}
+
+
+/* ========================= */
+/* PAGE SYSTEM */
+/* ========================= */
+
+.page {
+    display: none;
+
+    width: 100%;
+    height: 100vh;
+
+    padding-top: 76px;
+}
+
+.page.active-page {
+    display: block;
+}
+
+
+/* ========================= */
+/* MAP */
+/* ========================= */
+
+.map-wrapper {
+    position: relative;
+
+    width: 100%;
+    height: calc(100vh - 76px);
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+
+    background: #dce2e7;
+}
+
+
+/* MAP PANEL */
+
+.map-panel {
+    position: absolute;
+
+    top: 28px;
+    left: 28px;
+
+    width: 330px;
+
+    padding: 27px;
+
+    color: var(--text-dark);
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.16);
+
+    backdrop-filter: blur(15px);
+
+    z-index: 1000;
+}
+
+.panel-badge {
+    display: inline-flex;
+
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    background: rgba(239, 51, 64, 0.1);
+
+    color: var(--red);
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.map-panel h2 {
+    margin-top: 15px;
+
+    font-size: 29px;
+    line-height: 1.08;
+
+    letter-spacing: -1px;
+}
+
+.map-panel p {
+    margin-top: 13px;
+
+    color: #667085;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* LOCATION BUTTON */
+
+.location-button {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    margin-top: 20px;
+
+    padding: 13px 16px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #ef3340,
+        #cf1e2b
+    );
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 22px rgba(239, 51, 64, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.location-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 13px 26px rgba(239, 51, 64, 0.3);
+}
+
+.location-button:active {
+    transform: translateY(0);
+}
+
+.location-button span {
+    font-size: 19px;
+}
+
+
+/* DISTANCE INFO */
+
+.distance-info {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-top: 20px;
+    padding-top: 17px;
+
+    border-top: 1px solid #e7e9ed;
+}
+
+.distance-icon {
+    width: 39px;
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: #f2f4f7;
+
+    color: #344054;
+
+    font-size: 9px;
+    font-weight: 900;
+}
+
+.distance-info strong {
+    display: block;
+
+    color: #1d2939;
+
+    font-size: 12px;
+}
+
+.distance-info span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #98a2b3;
+
+    font-size: 10px;
+}
+
+
+/* MAP BOTTOM INFO */
+
+.map-bottom-info {
+    position: absolute;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 17px;
+
+    padding: 10px 16px;
+
+    background: rgba(8, 13, 24, 0.88);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 100px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+
+    backdrop-filter: blur(14px);
+
+    z-index: 1000;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #dce2eb;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+}
+
+.legend-dot.empty {
+    background: #16a34a;
+}
+
+.legend-dot.full {
+    background: #ef3340;
+}
+
+.legend-dot.temporary {
+    background: #168cff;
+}
+
+
+/* ========================= */
+/* LEAFLET */
+/* ========================= */
+
+.leaflet-control-zoom {
+    margin-right: 18px !important;
+    margin-bottom: 18px !important;
+
+    border: none !important;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.16) !important;
+}
+
+.leaflet-control-zoom a {
+    width: 36px !important;
+    height: 36px !important;
+
+    line-height: 36px !important;
+
+    background: rgba(255, 255, 255, 0.96) !important;
+
+    color: #111827 !important;
+
+    border: none !important;
+}
+
+.leaflet-control-zoom a:first-child {
+    border-radius: 10px 10px 0 0;
+}
+
+.leaflet-control-zoom a:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+.leaflet-control-attribution {
+    background: rgba(255, 255, 255, 0.75) !important;
+}
+
+
+/* ========================= */
+/* PARKING MENU */
+/* ========================= */
+
+.parking-menu {
+    position: fixed;
+
+    left: 50%;
+    bottom: 28px;
+
+    transform: translate(-50%, 150%);
+
+    width: min(390px, calc(100% - 30px));
+
+    padding: 20px;
+
+    background: rgba(8, 13, 24, 0.96);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.4);
+
+    backdrop-filter: blur(20px);
+
+    z-index: 10000;
+
+    opacity: 0;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.parking-menu.show {
+    transform: translate(-50%, 0);
+
+    opacity: 1;
+}
+
+.parking-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.parking-menu-header span {
+    color: white;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.menu-close {
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #b9c1ce;
+
+    font-size: 19px;
+
+    cursor: pointer;
+}
+
+.parking-menu > p {
+    margin-top: 7px;
+
+    color: #7e899a;
+
+    font-size: 11px;
+}
+
+.parking-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 17px;
+}
+
+.status-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 13px;
+
+    border-radius: 11px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+.status-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+}
+
+.empty-button {
+    border: 1px solid rgba(22, 163, 74, 0.25);
+
+    background: rgba(22, 163, 74, 0.13);
+
+    color: #4ade80;
+}
+
+.full-button {
+    border: 1px solid rgba(239, 51, 64, 0.25);
+
+    background: rgba(239, 51, 64, 0.13);
+
+    color: #ff6671;
+}
+
+.status-circle {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+}
+
+.empty-button .status-circle {
+    background: #22c55e;
+}
+
+.full-button .status-circle {
+    background: #ef3340;
+}
+
+
+/* ========================= */
+/* CONTENT PAGES */
+/* ========================= */
+
+.content-container {
+    width: min(1100px, calc(100% - 40px));
+
+    height: calc(100vh - 76px);
+
+    margin: 0 auto;
+
+    padding: 70px 0;
+
+    overflow-y: auto;
+}
+
+.page-heading {
+    max-width: 700px;
+}
+
+.heading-badge {
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    background: rgba(239, 51, 64, 0.1);
+
+    color: #ff5360;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.page-heading h2 {
+    margin-top: 15px;
+
+    font-size: 42px;
+    line-height: 1.05;
+
+    letter-spacing: -1.5px;
+}
+
+.page-heading p {
+    max-width: 600px;
+
+    margin-top: 14px;
+
+    color: #8e98aa;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* ========================= */
+/* SHARE PAGE */
+/* ========================= */
+
+.share-card {
+    margin-top: 40px;
+
+    max-width: 700px;
+
+    padding: 25px;
+
+    background: #101827;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 22px;
+}
+
+.upload-area {
+    width: 100%;
+}
+
+#photoInput {
+    display: none;
+}
+
+.upload-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: #e5e7eb;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.upload-button:hover {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.photo-preview {
+    margin-top: 15px;
+}
+
+.photo-preview img {
+    display: block;
+
+    max-width: 100%;
+    max-height: 300px;
+
+    border-radius: 14px;
+}
+
+#shareDescription {
+    width: 100%;
+    min-height: 130px;
+
+    margin-top: 17px;
+
+    padding: 15px;
+
+    resize: vertical;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 13px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 13px;
+}
+
+#shareDescription::placeholder {
+    color: #657184;
+}
+
+#shareDescription:focus {
+    border-color: rgba(239, 51, 64, 0.6);
+}
+
+.share-submit-button {
+    margin-top: 13px;
+
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: var(--red);
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.share-submit-button:hover {
+    background: var(--red-dark);
+}
+
+
+/* POSTS */
+
+.posts-section {
+    margin-top: 55px;
+}
+
+.section-title h3 {
+    font-size: 20px;
+}
+
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+.post-card {
+    overflow: hidden;
+
+    background: #101827;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 17px;
+}
+
+.post-card img {
+    display: block;
+
+    width: 100%;
+    height: 190px;
+
+    object-fit: cover;
+}
+
+.post-content {
+    padding: 15px;
+}
+
+.post-content p {
+    color: #c2c9d3;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.post-date {
+    display: block;
+
+    margin-top: 9px;
+
+    color: #697586;
+
+    font-size: 10px;
+}
+
+
+/* ========================= */
+/* CONTACT */
+/* ========================= */
+
+.contact-container {
+    max-width: 1000px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 16px;
+
+    margin-top: 45px;
+}
+
+.contact-card {
+    padding: 25px;
+
+    background: #101827;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 20px;
+}
+
+.contact-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(239, 51, 64, 0.1);
+
+    font-size: 18px;
+}
+
+.contact-card h3 {
+    margin-top: 19px;
+
+    font-size: 16px;
+}
+
+.contact-card p {
+    margin-top: 7px;
+
+    color: #7f8a9c;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.contact-card a,
+.contact-card button {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #ff5360;
+
+    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    text-decoration: none;
+}
+
+
+/* ========================= */
+/* PARK POPUP */
+/* ========================= */
+
+.parking-popup {
+    min-width: 230px;
+
+    color: #111827;
+}
+
+.parking-popup h3 {
+    margin-bottom: 8px;
+
+    font-size: 15px;
+}
+
+.popup-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 5px 8px;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.popup-status.empty {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.popup-status.full {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.popup-info {
+    margin-top: 10px;
+
+    color: #667085;
+
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+
+/* ACCURACY */
+
+.accuracy-box {
+    margin-top: 11px;
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+}
+
+.accuracy-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.accuracy-title {
+    color: #667085;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.accuracy-value {
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.accuracy-label {
+    margin-top: 3px;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.accuracy-bar {
+    width: 100%;
+    height: 5px;
+
+    margin-top: 8px;
+
+    overflow: hidden;
+
+    border-radius: 100px;
+
+    background: #e5e7eb;
+}
+
+.accuracy-bar-fill {
+    height: 100%;
+
+    border-radius: inherit;
+}
+
+.accuracy-high {
+    color: #16a34a;
+}
+
+.accuracy-medium {
+    color: #d97706;
+}
+
+.accuracy-low {
+    color: #dc2626;
+}
+
+.accuracy-high .accuracy-bar-fill {
+    background: #16a34a;
+}
+
+.accuracy-medium .accuracy-bar-fill {
+    background: #f59e0b;
+}
+
+.accuracy-low .accuracy-bar-fill {
+    background: #ef4444;
+}
+
+
+/* POPUP UPDATE BUTTON */
+
+.popup-update-button {
+    width: 100%;
+
+    margin-top: 11px;
+
+    padding: 9px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.popup-update-button:hover {
+    background: #1f2937;
+}
+
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media (max-width: 800px) {
+
+    .top-header {
+        height: 68px;
+
+        padding: 0 15px;
+    }
+
+    .brand {
+        min-width: auto;
+    }
+
+    .brand-text h1 {
+        font-size: 14px;
+    }
+
+    .brand-text span {
+        display: none;
+    }
+
+    .brand-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .main-navigation {
+        position: static;
+
+        transform: none;
+
+        margin-left: auto;
+    }
+
+    .nav-button {
+        padding: 25px 8px 22px;
+
+        font-size: 10px;
+    }
+
+    .nav-button.active::after {
+        left: 7px;
+        right: 7px;
+    }
+
+    .page {
+        padding-top: 68px;
+    }
+
+    .map-wrapper {
+        height: calc(100vh - 68px);
+    }
+
+    .map-panel {
+        top: 15px;
+        left: 15px;
+
+        width: calc(100% - 30px);
+
+        padding: 20px;
+    }
+
+    .map-panel h2 {
+        font-size: 25px;
+    }
+
+    .map-panel p {
+        font-size: 11px;
+    }
+
+    .distance-info {
+        display: none;
+    }
+
+    .map-bottom-info {
+        bottom: 17px;
+
+        gap: 10px;
+
+        padding: 8px 11px;
+    }
+
+    .legend-item {
+        font-size: 9px;
+    }
+
+    .content-container {
+        width: calc(100% - 30px);
+
+        padding: 40px 0;
+    }
+
+    .page-heading h2 {
+        font-size: 32px;
+    }
+
+    .posts-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .parking-menu {
+        bottom: 15px;
+    }
+}
+/* ========================================= */
+/* PARK PAYLAŞ + İLETİŞİM BEYAZ TEMA */
+/* ========================================= */
+
+#sharePage,
+#contactPage {
+    background: #ffffff;
+    color: #111827;
+    overflow-y: auto;
+}
+
+
+/* İçerik alanı */
+
+#sharePage .content-container,
+#contactPage .content-container {
+    color: #111827;
+}
+
+
+/* Başlıklar */
+
+#sharePage .page-heading h2,
+#contactPage .page-heading h2 {
+    color: #111827;
+}
+
+#sharePage .page-heading p,
+#contactPage .page-heading p {
+    color: #667085;
+}
+
+
+/* Kırmızı etiket */
+
+#sharePage .heading-badge,
+#contactPage .heading-badge {
+    background: rgba(239, 51, 64, 0.09);
+    color: #ef3340;
+}
+
+
+/* ========================================= */
+/* PAYLAŞIM KARTI */
+/* ========================================= */
+
+#sharePage .share-card {
+    background: #ffffff;
+
+    border: 1px solid #e8e8ec;
+
+    box-shadow:
+        0 12px 35px rgba(17, 24, 39, 0.07);
+}
+
+
+/* Fotoğraf seç */
+
+#sharePage .upload-button {
+    background: #ffffff;
+
+    border: 1px solid #ef3340;
+
+    color: #ef3340;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+#sharePage .upload-button:hover {
+    background: #ef3340;
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* Textarea */
+
+#sharePage #shareDescription {
+    background: #ffffff;
+
+    border: 1px solid #e1e4e8;
+
+    color: #111827;
+
+    box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+#sharePage #shareDescription::placeholder {
+    color: #98a2b3;
+}
+
+#sharePage #shareDescription:focus {
+    border-color: #ef3340;
+
+    box-shadow:
+        0 0 0 3px rgba(239, 51, 64, 0.08);
+}
+
+
+/* Paylaş butonu */
+
+#sharePage .share-submit-button {
+    background: #ef3340;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 20px rgba(239, 51, 64, 0.18);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#sharePage .share-submit-button:hover {
+    background: #d92532;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 11px 25px rgba(239, 51, 64, 0.25);
+}
+
+
+/* Son paylaşımlar */
+
+#sharePage .posts-section {
+    color: #111827;
+}
+
+#sharePage .section-title h3 {
+    color: #111827;
+}
+
+
+/* Paylaşım kartları */
+
+#sharePage .post-card {
+    background: #ffffff;
+
+    border: 1px solid #e8e8ec;
+
+    box-shadow:
+        0 8px 25px rgba(17, 24, 39, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#sharePage .post-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 35px rgba(17, 24, 39, 0.1);
+}
+
+#sharePage .post-content p {
+    color: #344054;
+}
+
+#sharePage .post-date {
+    color: #98a2b3;
+}
+
+
+/* ========================================= */
+/* İLETİŞİM */
+/* ========================================= */
+
+#contactPage .contact-grid {
+    margin-top: 45px;
+}
+
+
+/* İletişim kartları */
+
+#contactPage .contact-card {
+    background: #ffffff;
+
+    border: 1px solid #e8e8ec;
+
+    box-shadow:
+        0 10px 30px rgba(17, 24, 39, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+#contactPage .contact-card:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(239, 51, 64, 0.25);
+
+    box-shadow:
+        0 15px 35px rgba(17, 24, 39, 0.1);
+}
+
+
+/* İletişim ikonları */
+
+#contactPage .contact-icon {
+    background: rgba(239, 51, 64, 0.09);
+
+    color: #ef3340;
+}
+
+
+/* Kart başlıkları */
+
+#contactPage .contact-card h3 {
+    color: #111827;
+}
+
+
+/* Kart açıklamaları */
+
+#contactPage .contact-card p {
+    color: #667085;
+}
+
+
+/* Mail ve geri bildirim */
+
+#contactPage .contact-card a,
+#contactPage .contact-card button {
+    color: #ef3340;
+
+    transition:
+        color 0.2s ease;
+}
+
+#contactPage .contact-card a:hover,
+#contactPage .contact-card button:hover {
+    color: #c91f2b;
+}
+
+
+/* ========================================= */
+/* BOŞ PAYLAŞIM DURUMU */
+/* ========================================= */
+
+#sharePage .posts-container > div[style] {
+    background: #ffffff !important;
+
+    border: 1px solid #e8e8ec !important;
+
+    color: #667085 !important;
+
+    box-shadow:
+        0 8px 25px rgba(17, 24, 39, 0.05);
+}
+
+
+/* ========================================= */
+/* MOBİL */
+/* ========================================= */
+
+@media (max-width: 800px) {
+
+    #sharePage,
+    #contactPage {
+        background: #ffffff;
+    }
+
+    #sharePage .content-container,
+    #contactPage .content-container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    #sharePage .share-card {
+        padding: 18px;
+    }
+}
+/* ========================================= */
+/* ŞEFFAF ÜST MENÜ */
+/* ========================================= */
+
+.top-header {
+    background: rgba(5, 8, 15, 0.78) !important;
+
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ========================================= */
+/* NAV BUTONLARI */
+/* ========================================= */
+
+.nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.nav-button:hover {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* ========================================= */
+/* NAV İKONLARI */
+/* ========================================= */
+
+.nav-icon {
+    width: 18px;
+    height: 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    opacity: 0.75;
+
+    transition:
+        color 0.2s ease,
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* AKTİF */
+
+.nav-button.active {
+    color: #ffffff;
+}
+
+.nav-button.active .nav-icon {
+    color: #ef3340;
+
+    opacity: 1;
+
+    transform: scale(1.08);
+}
+
+
+/* AKTİF ALT ÇİZGİ */
+
+.nav-button.active::after {
+    background: #ef3340;
+
+    box-shadow:
+        0 0 10px rgba(239, 51, 64, 0.45);
+}
+
+
+/* ========================================= */
+/* BRAND'I DAHA CAM GÖRÜNÜMLÜ YAP */
+/* ========================================= */
+
+.brand-logo {
+    box-shadow:
+        0 8px 25px rgba(239, 51, 64, 0.28);
+}
+
+
+/* ========================================= */
+/* MOBİL NAV */
+/* ========================================= */
+
+@media (max-width: 800px) {
+
+    .nav-button {
+        gap: 4px;
+
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .nav-icon {
+        width: 15px;
+        height: 15px;
+
+        font-size: 14px;
+    }
+}
+ /* ========================================= */
+/* SAYFA GEÇİŞ ANİMASYONU */
+/* ========================================= */
+
+.page {
+    opacity: 0;
+    transform: translateY(12px);
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+/* Aktif sayfa */
+
+.page.active-page {
+    display: block;
+
+    opacity: 1;
+    transform: translateY(0);
+
+    animation: pageEnter 0.4s ease forwards;
+}
+
+
+/* Sayfa giriş animasyonu */
+
+@keyframes pageEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ========================================= */
+/* NAV GEÇİŞİ */
+/* ========================================= */
+
+.nav-button {
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        transform 0.2s ease;
+}
+
+.nav-button:active {
+    transform: scale(0.96);
+}
+
+
+/* Aktif ikon */
+
+.nav-icon {
+    transition:
+        color 0.25s ease,
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* ========================================= */
+/* HARİTA PANELİ DE HAFİF GELSİN */
+/* ========================================= */
+
+#mapPage.active-page .map-panel {
+    animation: panelEnter 0.5s ease;
+}
+
+@keyframes panelEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ========================================= */
+/* PARK PAYLAŞ KARTLARI */
+/* ========================================= */
+
+#sharePage.active-page .share-card {
+    animation: contentEnter 0.45s ease 0.05s both;
+}
+
+#sharePage.active-page .posts-section {
+    animation: contentEnter 0.45s ease 0.12s both;
+}
+
+
+/* ========================================= */
+/* İLETİŞİM KARTLARI */
+/* ========================================= */
+
+#contactPage.active-page .contact-card {
+    animation: contentEnter 0.45s ease both;
+}
+
+#contactPage.active-page .contact-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+#contactPage.active-page .contact-card:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+#contactPage.active-page .contact-card:nth-child(3) {
+    animation-delay: 0.19s;
+}
+
+
+@keyframes contentEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+/* ========================================= */
+/* SITE FOOTER */
+/* ========================================= */
+
+.site-footer {
+    margin-top: 70px;
+    padding: 0 0 30px;
+}
+
+
+/* ÜST ÇİZGİ */
+
+.footer-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(239, 51, 64, 0.45),
+        transparent
+    );
+
+    margin-bottom: 30px;
+}
+
+
+/* FOOTER ANA */
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+
+/* MARKA */
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.footer-logo {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #ef3340,
+        #c91f2b
+    );
+
+    color: #fff;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    box-shadow:
+        0 6px 18px rgba(239, 51, 64, 0.18);
+}
+
+
+.footer-brand strong {
+    display: block;
+
+    color: #111827;
+
+    font-size: 14px;
+    font-weight: 750;
+}
+
+
+.footer-brand span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #98a2b3;
+
+    font-size: 12px;
+}
+
+
+/* FOOTER LİNKLER */
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.footer-links a {
+    color: #667085;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.footer-links a:hover {
+    color: #ef3340;
+    transform: translateY(-1px);
+}
+
+
+/* ALT BİLGİ */
+
+.footer-bottom {
+    margin-top: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    color: #98a2b3;
+
+    font-size: 12px;
+}
+
+
+/* MOBİL */
+
+@media (max-width: 700px) {
+
+    .site-footer {
+        margin-top: 50px;
+    }
+
+
+    .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+}
+/* =========================
+   TRAFİK YOĞUNLUĞU
+========================= */
+
+.traffic-card {
+    margin-top: 18px;
+    padding: 17px;
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.traffic-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.traffic-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    font-size: 19px;
+}
+
+.traffic-header strong {
+    display: block;
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.traffic-header span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 11px;
+}
+
+.traffic-status-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 16px;
+}
+
+.traffic-status-row strong {
+    color: #ffffff;
+    font-size: 13px;
+}
+
+.traffic-status-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+}
+
+.traffic-status-dot.low {
+    background: #22c55e;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+}
+
+.traffic-status-dot.medium {
+    background: #f59e0b;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+.traffic-status-dot.high {
+    background: #ef3340;
+    box-shadow: 0 0 10px rgba(239, 51, 64, 0.6);
+}
+
+.traffic-card p {
+    margin: 8px 0 0;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.traffic-update {
+    margin-top: 13px;
+    padding-top: 11px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+    color: rgba(255, 255, 255, 0.42);
+
+    font-size: 10px;
+}
+
+.traffic-update strong {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+}
+/* =========================
+   PARK İSTATİSTİKLERİ
+========================= */
+
+.parking-stats-card {
+    margin-top: 18px;
+    padding: 17px;
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.stats-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.stats-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    font-size: 18px;
+}
+
+.stats-header strong {
+    display: block;
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.stats-header span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 11px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    margin-top: 16px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    padding-top: 15px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 3px;
+}
+
+.stat-number {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.stat-number.empty {
+    color: #22c55e;
+}
+
+.stat-number.full {
+    color: #ef3340;
+}
+
+.stat-number.total {
+    color: #fff;
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 10px;
+}
+/* PARK DURUMU - RENK DÜZENİ */
+.parking-stats-card {
+    background: #0f1724;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.parking-stats-card .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.parking-stats-card .stat-item {
+    background: #151f2e;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 14px 8px;
+    text-align: center;
+}
+
+.parking-stats-card .stat-number {
+    display: block;
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+
+/* BOŞ - YEŞİL */
+.parking-stats-card .stat-number.empty {
+    color: #22c55e !important;
+}
+
+/* DOLU - KIRMIZI */
+.parking-stats-card .stat-number.full {
+    color: #ef4444 !important;
+}
+
+/* TOPLAM - BEYAZ */
+.parking-stats-card .stat-number.total {
+    color: #ffffff !important;
+}
+
+/* ALT YAZILAR */
+.parking-stats-card .stat-label {
+    display: block;
+    color: #94a3b8 !important;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+/* TRAFİK YOĞUNLUĞU - RENK DÜZENİ */
+.traffic-card {
+    background: #0f1724;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.traffic-card .traffic-status {
+    color: #ffffff !important;
+}
+
+.traffic-card .traffic-description {
+    color: #94a3b8 !important;
+}
+
+.traffic-card .traffic-update {
+    color: #64748b !important;
+}
+
+/* Trafik durum noktası */
+.traffic-card .traffic-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* Trafik seviyeleri */
+.traffic-card .traffic-status-dot.low {
+    background: #22c55e !important;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.45);
+}
+
+.traffic-card .traffic-status-dot.medium {
+    background: #f59e0b !important;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
+}
+
+.traffic-card .traffic-status-dot.high {
+    background: #ef4444 !important;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.45);
+}
