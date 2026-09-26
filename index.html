@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+```
+<title>İstanbul Boş Park</title>
+
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<!-- HEADER -->
+<header class="top-header">
+
+    <div class="brand">
+        <div class="brand-logo">P</div>
+
+        <div class="brand-text">
+            <h1>İstanbul Boş Park</h1>
+            <span>Yakınındaki park yerini bul</span>
+        </div>
+    </div>
+
+    <nav class="main-navigation">
+
+        <button
+            class="nav-button active"
+            data-page="mapPage"
+        >
+            <span class="nav-icon">⌖</span>
+            <span>Harita</span>
+        </button>
+
+        <button
+            class="nav-button"
+            data-page="sharePage"
+        >
+            <span class="nav-icon">↗</span>
+            <span>Park Paylaş</span>
+        </button>
+
+        <button
+            class="nav-button"
+            data-page="contactPage"
+        >
+            <span class="nav-icon">✉</span>
+            <span>İletişim</span>
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- ========================= -->
+<!-- HARİTA SAYFASI -->
+<!-- ========================= -->
+
+<main id="mapPage" class="page active-page">
+
+    <div class="map-wrapper">
+
+        <div id="map"></div>
+
+
+        <!-- SOL PANEL -->
+        <section class="map-panel">
+
+            <div class="panel-badge">
+                İSTANBUL
+            </div>
+
+            <h2>
+                Yakınındaki<br>
+                boş park yerlerini bul.
+            </h2>
+
+            <p>
+                Konumunu paylaşarak çevrendeki
+                park yerlerini görüntüle.
+            </p>
+
+            <button
+                id="findLocationButton"
+                class="location-button"
+                type="button"
+            >
+                <span>⌖</span>
+                Konumumu Bul
+            </button>
+
+
+            <!-- 500 METRE -->
+            <div class="distance-info">
+
+                <div class="distance-icon">
+                    500
+                </div>
+
+                <div>
+                    <strong>500 metre alan</strong>
+
+                    <span>
+                        Sadece yakınındaki park yerleri gösterilir.
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- PARK İSTATİSTİKLERİ -->
+            <div class="parking-stats-card">
+
+                <div class="stats-header">
+
+                    <div class="stats-icon">
+                        📊
+                    </div>
+
+                    <div>
+                        <strong>Park Durumu</strong>
+
+                        <span>
+                            Yakınındaki bildirimler
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-item">
+
+                        <span
+                            id="emptyParkingCount"
+                            class="stat-number empty"
+                        >
+                            0
+                        </span>
+
+                        <span class="stat-label">
+                            Boş
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-item">
+
+                        <span
+                            id="fullParkingCount"
+                            class="stat-number full"
+                        >
+                            0
+                        </span>
+
+                        <span class="stat-label">
+                            Dolu
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-item">
+
+                        <span
+                            id="totalParkingCount"
+                            class="stat-number total"
+                        >
+                            0
+                        </span>
+
+                        <span class="stat-label">
+                            Toplam
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TRAFİK -->
+            <div class="traffic-card">
+
+                <div class="traffic-header">
+
+                    <div class="traffic-icon">
+                        🚦
+                    </div>
+
+                    <div>
+                        <strong>Trafik Yoğunluğu</strong>
+
+                        <span>
+                            İstanbul geneli
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="traffic-status-row">
+
+                    <span
+                        id="trafficStatusDot"
+                        class="traffic-status-dot medium"
+                    ></span>
+
+                    <strong id="trafficStatus">
+                        Orta
+                    </strong>
+
+                </div>
+
+
+                <p id="trafficDescription">
+                    İstanbul genelinde trafik yer yer yoğun seyrediyor.
+                </p>
+
+
+                <div class="traffic-update">
+
+                    Son güncelleme:
+
+                    <strong id="trafficUpdate">
+                        14:00
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SON GÜNCELLENENLER -->
+        <div
+            id="recentParkingPanel"
+            class="recent-parking-panel"
+        >
+
+            <div class="recent-header">
+
+                <strong>
+                    🕐 Son Güncellenenler
+                </strong>
+
+                <span>
+                    Yakınındaki parklar
+                </span>
+
+            </div>
+
+
+            <div id="recentParkingList">
+
+                Konumunu bulduğunda
+                yakınındaki güncellemeler burada görünecek.
+
+            </div>
+
+        </div>
+
+
+        <!-- ALT BİLGİ -->
+        <div class="map-bottom-info">
+
+            <div class="legend-item">
+                <span class="legend-dot empty"></span>
+                Boş
+            </div>
+
+            <div class="legend-item">
+                <span class="legend-dot full"></span>
+                Dolu
+            </div>
+
+            <div class="legend-item">
+                <span class="legend-dot temporary"></span>
+                Seçilen konum
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ========================= -->
+<!-- PARK PAYLAŞ SAYFASI -->
+<!-- ========================= -->
+
+<main id="sharePage" class="page">
+
+    <div class="content-container">
+
+        <div class="page-heading">
+
+            <span class="heading-badge">
+                TOPLULUK
+            </span>
+
+            <h2>
+                Park deneyimini paylaş.
+            </h2>
+
+            <p>
+                Park yeri, trafik veya İstanbul'daki
+                park deneyimin hakkında paylaşım yap.
+            </p>
+
+        </div>
+
+
+        <section class="share-card">
+
+            <div class="upload-area">
+
+                <label
+                    for="photoInput"
+                    class="upload-button"
+                >
+                    📷 Fotoğraf Seç
+                </label>
+
+                <input
+                    type="file"
+                    id="photoInput"
+                    accept="image/*"
+                >
+
+                <div
+                    id="photoPreview"
+                    class="photo-preview"
+                ></div>
+
+            </div>
+
+
+            <textarea
+                id="shareDescription"
+                placeholder="Ne paylaşmak istiyorsun?"
+                maxlength="500"
+            ></textarea>
+
+
+            <button
+                id="shareButton"
+                class="share-submit-button"
+                type="button"
+            >
+                Paylaş
+            </button>
+
+        </section>
+
+
+        <section class="posts-section">
+
+            <div class="section-title">
+                <h3>Son Paylaşımlar</h3>
+            </div>
+
+            <div
+                id="postsContainer"
+                class="posts-container"
+            ></div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- ========================= -->
+<!-- İLETİŞİM SAYFASI -->
+<!-- ========================= -->
+
+<main id="contactPage" class="page">
+
+    <div class="content-container contact-container">
+
+        <div class="page-heading">
+
+            <span class="heading-badge">
+                İLETİŞİM
+            </span>
+
+            <h2>
+                Bize ulaş.
+            </h2>
+
+            <p>
+                İstanbul Boş Park hakkında görüş,
+                öneri veya hata bildirimi gönderebilirsin.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    ✉
+                </div>
+
+                <h3>
+                    E-posta
+                </h3>
+
+                <p>
+                    Genel iletişim ve destek
+                </p>
+
+                <a href="mailto:iletisim@istanbulbospark.com">
+                    iletisim@istanbulbospark.com
+                </a>
+
+            </div>
+
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    💬
+                </div>
+
+                <h3>
+                    Geri Bildirim
+                </h3>
+
+                <p>
+                    Site hakkında düşüncelerini bizimle paylaş.
+                </p>
+
+                <button
+                    id="feedbackButton"
+                    type="button"
+                >
+                    Geri Bildirim Gönder
+                </button>
+
+            </div>
+
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    📍
+                </div>
+
+                <h3>
+                    İstanbul
+                </h3>
+
+                <p>
+                    İstanbul'daki sürücüler için
+                    topluluk destekli park sistemi.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+
+            <div class="footer-line"></div>
+
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+
+                    <div class="footer-logo">
+                        P
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            İstanbul Boş Park
+                        </strong>
+
+                        <span>
+                            Yakınındaki park yerini bul.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <a
+                        href="#"
+                        onclick="return false;"
+                    >
+                        Kullanım Koşulları
+                    </a>
+
+                    <a
+                        href="#"
+                        onclick="return false;"
+                    >
+                        Gizlilik Politikası
+                    </a>
+
+                    <a
+                        href="#"
+                        onclick="return false;"
+                    >
+                        İletişim
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 İstanbul Boş Park. Tüm hakları saklıdır.
+                </span>
+
+                <span>
+                    İstanbul için geliştirildi.
+                </span>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+</main>
+
+
+<!-- ========================= -->
+<!-- PARK DURUM MENÜSÜ -->
+<!-- ========================= -->
+
+<div
+    id="parkingMenu"
+    class="parking-menu"
+>
+
+    <div class="parking-menu-header">
+
+        <span>
+            Park yeri durumu
+        </span>
+
+        <button
+            id="cancelButton"
+            type="button"
+            class="menu-close"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <p>
+        Bu konumdaki park yerinin durumunu seç.
+    </p>
+
+
+    <div class="parking-actions">
+
+        <button
+            id="emptyButton"
+            type="button"
+            class="status-button empty-button"
+        >
+            <span class="status-circle"></span>
+            Boş
+        </button>
+
+
+        <button
+            id="fullButton"
+            type="button"
+            class="status-button full-button"
+        >
+            <span class="status-circle"></span>
+            Dolu
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- LEAFLET -->
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+></script>
+
+<!-- ANA JS -->
+<script src="script.js"></script>
+```
+
+</body>
+</html>
