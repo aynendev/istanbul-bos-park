@@ -2269,3 +2269,28 @@ body {
         background: transparent !important;
     }
 }
+
+/* MOBİL - HARİTA SOL PANELİNİ GİZLE */
+@media (max-width: 800px) {
+
+    .map-panel {
+        display: none !important;
+    }
+
+    .map-wrapper {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #map {
+        width: 100% !important;
+        height: calc(100vh - 70px) !important;
+    }
+
+    .main-container {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
